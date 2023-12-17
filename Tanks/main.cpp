@@ -288,14 +288,14 @@ int main()
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     sf::RenderWindow window(sf::VideoMode(800, 640, desktop.bitsPerPixel), "Lesson 12");
 
-    Font font;//шрифт
-    font.loadFromFile("CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
-    Text text("", font, 20);//создаем объект текст
-    text.setColor(Color::Red);//покрасили текст в красный
-    text.setStyle(Text::Bold);//жирный текст.
+    // Font font;//шрифт
+    // font.loadFromFile("CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
+    // Text text("", font, 20);//создаем объект текст
+    // text.setColor(Color::Red);//покрасили текст в красный
+    // text.setStyle(Text::Bold);//жирный текст.
 
     Image map_image;//объект изображения для карты
-    map_image.loadFromFile("images/map_new.png");//загружаем файл для карты
+    map_image.loadFromFile("C:/Qt_projects/Tanks/images/map_new.png");//загружаем файл для карты
     Texture map;//текстура карты
     map.loadFromImage(map_image);//заряжаем текстуру картинкой
     Sprite s_map;//создаём спрайт для карты
@@ -306,13 +306,13 @@ int main()
     int gameTime = 0;//объявили игровое время, инициализировали.
 
     Image heroImage;
-    heroImage.loadFromFile("images/hero.png"); // загружаем изображение игрока
+    heroImage.loadFromFile("C:/Qt_projects/Tanks/images/hero.png"); // загружаем изображение игрока
 
     Image easyEnemyImage;
-    easyEnemyImage.loadFromFile("images/enemy.png"); // загружаем изображение врага
+    easyEnemyImage.loadFromFile("C:/Qt_projects/Tanks/images/enemy.png"); // загружаем изображение врага
 
     Image BulletImage;//изображение для пули
-    BulletImage.loadFromFile("images/bullet.png");//загрузили картинку в объект изображения
+    BulletImage.loadFromFile("C:/Qt_projects/Tanks/images/bullet.png");//загрузили картинку в объект изображения
 
     Player p(heroImage, 100, 100, 96, 96, "Player1");//объект класса игрока
 
@@ -402,12 +402,12 @@ int main()
                 window.draw(s_map);
             }
         //объявили переменную здоровья и времени
-        std::ostringstream playerHealthString, gameTimeString;
-        playerHealthString << p.health; gameTimeString << gameTime;//формируем строку
-        text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " +
-        gameTimeString.str());//задаем строку тексту
-        text.setPosition(50, 50);//задаем позицию текста
-        window.draw(text);//рисуем этот текст
+        // std::ostringstream playerHealthString, gameTimeString;
+        // playerHealthString << p.health; gameTimeString << gameTime;//формируем строку
+        // text.setString("Здоровье: " + playerHealthString.str() + "\nВремя игры: " +
+        // gameTimeString.str());//задаем строку тексту
+        // text.setPosition(50, 50);//задаем позицию текста
+        // window.draw(text);//рисуем этот текст
         window.draw(p.sprite);//рисуем спрайт объекта “p” класса “Player”
         //рисуем врагов
         for (it = enemies.begin(); it != enemies.end(); it++)
