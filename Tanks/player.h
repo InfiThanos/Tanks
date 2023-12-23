@@ -7,9 +7,9 @@ using namespace sf;
 class Player : public Entity { // класс Игрока
 public:
     int playerScore;
-
-//    Player(Image &image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,
-//                                                                                        Y, W, H, Name) {}
+    int gunDirect;     //направление орудия танка (куда полетит снаряд)
+    bool rechargeGun;  //готовность к стрельбе (орудие перезаряжено)
+    int ammo;    //боеклмплект (количество снарядов)
 
     Player(Image &image, float X, float Y, int W, int H, std::string Name);
 
