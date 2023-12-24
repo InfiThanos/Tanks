@@ -20,7 +20,7 @@ int main()
     //text.setColor(Color::Red);//покрасили текст в красный
     //text.setStyle(Text::Bold);//жирный текст.
     Image map_image;//объект изображения для карты
-    map_image.loadFromFile("C:/Qt_projects/Tanks/images/map_new.png");//загружаем файл для карты
+    map_image.loadFromFile("images/map_new.png");//загружаем файл для карты
     Texture map;//текстура карты
     map.loadFromImage(map_image);//заряжаем текстуру картинкой
     Sprite s_map;//создаём спрайт для карты
@@ -29,11 +29,11 @@ int main()
     Clock gameTimeClock;//переменная игрового времени, будем здесь хранить время игры
     int gameTime = 0;//объявили игровое время, инициализировали.
     Image heroImage;
-    heroImage.loadFromFile("C:/Qt_projects/Tanks/images/hero.png"); // загружаем изображение игрока
+    heroImage.loadFromFile("images/hero.png"); // загружаем изображение игрока
     Image easyEnemyImage;
-    easyEnemyImage.loadFromFile("C:/Qt_projects/Tanks/images/enemy.png"); // загружаем изображение врага
+    easyEnemyImage.loadFromFile("images/enemy.png"); // загружаем изображение врага
     Image BulletImage;//изображение для пули
-    BulletImage.loadFromFile("C:/Qt_projects/Tanks/images/bullet.png");//загрузили картинку в объект изображения
+    BulletImage.loadFromFile("images/bullet.png");//загрузили картинку в объект изображения
     Player p(heroImage, 100, 100, 96, 96, "Player1");//объект класса игрока
     std::list<Entity*> enemies; //список врагов
     std::list<Entity*> Bullets; //список пуль
