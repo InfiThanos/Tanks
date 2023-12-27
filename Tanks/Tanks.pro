@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     entity.cpp \
     player.cpp \
     enemy.cpp \
-    map.cpp
+    map.cpp \
+    bullet.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -28,5 +29,6 @@ HEADERS += \
     entity.h \
     player.h \
     enemy.h \
-    map.h
+    map.h \
+    bullet.h
 
