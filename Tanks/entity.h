@@ -2,7 +2,7 @@
 #define ENTITY_H
 
 #include <SFML\Graphics.hpp>
-//#include "map.h"
+#include "map.h"
 
 using namespace sf;
 

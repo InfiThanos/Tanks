@@ -18,7 +18,8 @@ INCLUDEPATH += "..\SFML-2.3.2\include"
 SOURCES += main.cpp \
     entity.cpp \
     player.cpp \
-    enemy.cpp
+    enemy.cpp \
+    map.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -26,5 +27,6 @@ qtcAddDeployment()
 HEADERS += \
     entity.h \
     player.h \
-    enemy.h
+    enemy.h \
+    map.h
 
