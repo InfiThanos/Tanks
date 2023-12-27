@@ -15,8 +15,12 @@ LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-main-d -lsfml-network-d -lsfml-w
 
 INCLUDEPATH += "..\SFML-2.3.2\include"
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    entity.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
+
+HEADERS += \
+    entity.h
 
