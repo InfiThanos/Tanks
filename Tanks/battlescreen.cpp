@@ -64,12 +64,16 @@ void BattleScreen::play()
 
     std::list<Entity*> Impacts; //спысок взрывов на поле
 
+    map.createLevel();
+
     while (window.isOpen() && p.getLife() && map.getLevel() != 4)
     {
         int enemiesCount = createEnemy(Enemies, EasyEnemyImage, map, "EasyEnemy");
         enemiesCount += createEnemy(Enemies, MediumEnemyImage, map, "MediumEnemy");
         enemiesCount += createEnemy(Enemies, HardEnemyImage, map, "HardEnemy"); //текущее количество врагов в игре
         int impactsCount;
+
+        std::cout << enemiesCount << std::endl;
 
         while (window.isOpen() && p.getLife() && enemiesCount)
         {
@@ -112,11 +116,13 @@ void BattleScreen::play()
     {
         message("Win", window, map, p);
         window.display();
+        Sleep(2000);
     }
     else
     {
         message("Lose", window, map, p);
         window.display();
+        Sleep(2000);
     }
     // Ожидаем закрытия окна или нажатия клавиши
     while (window.isOpen()) {
@@ -304,7 +310,7 @@ void BattleScreen::checkColision(Player& player,std::list<Entity*>& Enemies, std
     //Смотрим пересечение игрока с врагами
     for (it = Enemies.begin(); it != Enemies.end(); it++) //бежим по списку врагов
     {
-        if (player.getRect().intersects((*it)->getRect()) && (*it)->getName() == "EasyEnemy") {
+        if (player.getRect().intersects((*it)->getRect())) {
             player.setLife();
             player.setHealth(player.getHealth());
             break;
