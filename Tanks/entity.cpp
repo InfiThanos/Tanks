@@ -3,7 +3,7 @@
 using namespace sf;
 
 Entity::Entity(Image &image, float X, float Y, int W, int H, std::string Name){
-    x = X; y = Y; //координата появления спрайта
+    x = X; y = Y; // Координата появления спрайта
     w = W; h = H;
     name = Name;
     moveTimer = 0;
@@ -11,18 +11,18 @@ Entity::Entity(Image &image, float X, float Y, int W, int H, std::string Name){
     speed = 0;
     CurrentFrame = 0;
     health = 100;
-    life = true; //инициализировали логическую переменную жизни, герой жив
-    texture.loadFromImage(image); //заносим наше изображение в текстуру
-    sprite.setTexture(texture);   //заливаем спрайт текстурой
+    life = true; // Инициализировали логическую переменную жизни, герой жив
+    texture.loadFromImage(image); // Заносим наше изображение в текстуру
+    sprite.setTexture(texture);   // Заливаем спрайт текстурой
 }
 
-FloatRect Entity::getRect(){     //метод получения прямоугольника. его коорд, размеры (шир,высот).
-    FloatRect FR(x, y, w, h);    //переменная FR типа FloatRect
+FloatRect Entity::getRect(){     // Метод получения прямоугольника. его коорд, размеры (шир,высот).
+    FloatRect FR(x, y, w, h);    // Переменная FR типа FloatRect
     return FR;
-    //Тип данных (класс) "sf::FloatRect" позволяет хранить четыре координаты прямоугольника
-    //в нашей игре это координаты текущего расположения тайла на карте
-    //далее это позволит спросить, есть ли ещё какой-либо тайл на этом месте
-    //эта ф-ция нужна для проверки пересечений
+    // Тип данных (класс) "sf::FloatRect" позволяет хранить четыре координаты прямоугольника
+    // в нашей игре это координаты текущего расположения тайла на карте
+    // далее это позволит спросить, есть ли ещё какой-либо тайл на этом месте
+    // эта ф-ция нужна для проверки пересечений
 }
 
 void Entity::getCoordinates(float& X, float& Y)
