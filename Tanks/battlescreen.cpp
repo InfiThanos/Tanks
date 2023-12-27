@@ -66,6 +66,8 @@ void BattleScreen::play()
 
     //map.createLevel();
 
+    map.createLevel();
+
     while (window.isOpen() && p.getLife() && map.getLevel() != 4)
     {
         int enemiesCount = createEnemy(Enemies, EasyEnemyImage, map, "EasyEnemy");
