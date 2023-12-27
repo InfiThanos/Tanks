@@ -244,6 +244,7 @@ void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& 
         {
             it = Enemies.erase(it);
             enemiesCount--;
+            std::cout << enemiesCount << " 247" << std::endl;
         }
         else it++;//и идем курсором (итератором) к след объекту.
     }
