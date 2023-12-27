@@ -21,22 +21,26 @@ Player::Player(Image &image, float X, float Y, int W, int H, std::string Name) :
 
 void Player::control()
 {
-    if (Keyboard::isKeyPressed(Keyboard::Left)) {
+    if (Keyboard::isKeyPressed(Keyboard::Left)
+        || Keyboard::isKeyPressed(Keyboard::A)) {
         state = left;
         gunDirect = left;
         speed = 0.1;
     }
-    if (Keyboard::isKeyPressed(Keyboard::Right)) {
+    if (Keyboard::isKeyPressed(Keyboard::Right)
+        || Keyboard::isKeyPressed(Keyboard::D)) {
         state = right;
         gunDirect = right;
         speed = 0.1;
     }
-    if (Keyboard::isKeyPressed(Keyboard::Up)) {
+    if (Keyboard::isKeyPressed(Keyboard::Up)
+        || Keyboard::isKeyPressed(Keyboard::W)) {
         state = up;
         gunDirect = up;
         speed = 0.1;
     }
-    if (Keyboard::isKeyPressed(Keyboard::Down)) {
+    if (Keyboard::isKeyPressed(Keyboard::Down)
+        || Keyboard::isKeyPressed(Keyboard::S)) {
         state = down;
         gunDirect = down;
         speed = 0.1;
