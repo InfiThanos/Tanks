@@ -20,7 +20,9 @@ SOURCES += main.cpp \
     player.cpp \
     enemy.cpp \
     map.cpp \
-    bullet.cpp
+    bullet.cpp \
+    impact.cpp \
+    battlescreen.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -30,5 +32,7 @@ HEADERS += \
     player.h \
     enemy.h \
     map.h \
-    bullet.h
+    bullet.h \
+    impact.h \
+    battlescreen.h
 

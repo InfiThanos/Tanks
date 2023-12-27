@@ -1,7 +1,11 @@
 #include <iostream>
+#include "battlescreen.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "reboot" << std::endl;
+    BattleScreen Game;
+    Game.play();
     return 0;
 }

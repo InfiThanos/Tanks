@@ -22,6 +22,7 @@ public:
     FloatRect getRect();
     virtual void update(float& time, Map& map) = 0;
     void getCoordinates(float& X, float& Y);
+    void setCoordinates(float X, float Y);
     bool getLife();
     void setLife();
     Sprite getSprite();
