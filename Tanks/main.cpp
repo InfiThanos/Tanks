@@ -2,6 +2,6 @@
 
 int main()
 {
-    std::cout << "rebut" << std::endl;
+    std::cout << "reboot" << std::endl;
     return 0;
 }
