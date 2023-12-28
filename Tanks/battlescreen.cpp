@@ -32,7 +32,7 @@ void BattleScreen::play()
     text.setStyle(Text::Bold); //жирный текст
 
     Image map_image; //объект изображения для карты
-    map_image.loadFromFile("images/map_test32.png"); //загружаем файл для карты
+    map_image.loadFromFile("images/map32.png"); //загружаем файл для карты
 
     Map map(map_image);
 
@@ -63,10 +63,6 @@ void BattleScreen::play()
     ImpactImage.loadFromFile("images/impact.png"); //загрузили изображения взрывов
 
     std::list<Entity*> Impacts; //спысок взрывов на поле
-
-    //map.createLevel();
-
-    map.createLevel();
 
     while (window.isOpen() && p.getLife() && map.getLevel() != 4)
     {
