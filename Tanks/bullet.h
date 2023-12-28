@@ -8,7 +8,7 @@ using namespace sf;
 class Bullet : public Entity
 {
 public:
-    Bullet(Image &image, float X, float Y, int W, int H, std::string Name, int dir);
+    Bullet(Image image, float X, float Y, int W, int H, std::string Name, int dir);
     void update(float& time, Map& map);
 };
 

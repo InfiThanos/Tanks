@@ -18,7 +18,7 @@ protected:
     std::string name;
 
 public:
-    Entity(Image &image, float X, float Y, int W, int H, std::string Name);
+    Entity(Image image, float X, float Y, int W, int H, std::string Name);
     FloatRect getRect();
     virtual void update(float& time, Map& map) = 0;
     void getCoordinates(float& X, float& Y);

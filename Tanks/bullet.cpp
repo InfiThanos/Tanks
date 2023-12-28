@@ -2,7 +2,7 @@
 
 using namespace sf;
 
-Bullet::Bullet(Image &image, float X, float Y, int W, int H, std::string Name, int dir) : Entity(image, X, Y, W, H, Name){
+Bullet::Bullet(Image image, float X, float Y, int W, int H, std::string Name, int dir) : Entity(image, X, Y, W, H, Name){
     x += 12;
     y += 12;
     direction = dir;

@@ -2,7 +2,7 @@
 
 using namespace sf;
 
-Impact::Impact(Image &image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,
+Impact::Impact(Image image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,
                                                                                         Y, W, H, Name){
     //Задаем спрайту один прямоугольник для
     //вывода. IntRect – для приведения типов

@@ -15,7 +15,7 @@ private:
     int ammo;    //боеклмплект (количество снарядов)
 
 public:
-    Player(Image &image, float X, float Y, int W, int H, std::string Name);
+    Player(Image image, float X, float Y, int W, int H, std::string Name);
     void control();
     void checkCollisionWithMap(float Dx, float Dy, Map& map);
     void update(float& time, Map& map);

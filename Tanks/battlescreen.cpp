@@ -42,15 +42,7 @@ void BattleScreen::play()
     Player p(heroImage, 100, 100, 52, 52, "Player"); //создаем объект класса игрока
 
     Clock clock;  // время для синхронизации движения объектов
-    Clock gameTimeClock; //переменная игрового времени, будем здесь хранить время игры
     Clock generateClock; //время для задержек генерации вещей и бонусов
-
-    Image EasyEnemyImage;
-    EasyEnemyImage.loadFromFile("images/EasyEnemy.png"); //загружаем изображения врага
-    Image MediumEnemyImage;
-    MediumEnemyImage.loadFromFile("images/MediumEnemy.png"); //загружаем изображения врага
-    Image HardEnemyImage;
-    HardEnemyImage.loadFromFile("images/HardEnemy.png"); //загружаем изображения врага
 
     std::list<Entity*> Enemies; //список врагов
 
@@ -66,17 +58,15 @@ void BattleScreen::play()
 
     while (window.isOpen() && p.getLife() && map.getLevel() != 4)
     {
-        int enemiesCount = createEnemy(Enemies, EasyEnemyImage, map); //текущее количество врагов в игре
-        int impactsCount;
+        int enemiesCount = createEnemy(Enemies, map); //текущее количество врагов в игре
 
-        std::cout << enemiesCount << std::endl;
+        int impactsCount = 0;
 
-        while (window.isOpen() && p.getLife() && enemiesCount)
+        clock.restart();
+
+        while (window.isOpen() && p.getLife() && ((enemiesCount || impactsCount) != 0))
         {
             float time = clock.getElapsedTime().asMicroseconds();
-            if (p.getLife()) gameTime = gameTimeClock.getElapsedTime().asSeconds(); //игровое время в
-            //секундах идёт вперед, пока жив игрок. Перезагружать как time его не надо.
-            //оно не обновляет логику игры
             clock.restart();
             time = time / 800;
             int generateTimer = generateClock.getElapsedTime().asMilliseconds();
@@ -155,46 +145,42 @@ void BattleScreen::readEvent(sf::RenderWindow& window, Player& player, std::list
     }
 }
 
-int BattleScreen::createEnemy(std::list<Entity*>& Enemies, Image& EnemyImage, Map& map)
+int BattleScreen::createEnemy(std::list<Entity*>& Enemies, Map& map)
 {
+    Image EasyEnemyImage;
+    EasyEnemyImage.loadFromFile("images/EasyEnemy.png"); //загружаем изображения врага
+    Image MediumEnemyImage;
+    MediumEnemyImage.loadFromFile("images/MediumEnemy.png"); //загружаем изображения врага
+    Image HardEnemyImage;
+    HardEnemyImage.loadFromFile("images/HardEnemy.png"); //загружаем изображения врага
+
     int EnemiesCount = 0;
     std::string TileMap = map.getTileMap();
     int l_map = map.getWidthMap();
-    std::list<Entity*>::iterator it; //итератор чтобы проходить по элементам списка
+    int h_map = map.getHeightMap();
 
-    for (int i = 0; i < map.getHeightMap(); i++)
-        for (int j = 0; j < map.getWidthMap(); j++){
+    for (int i = 0; i < h_map; i++)
+        for (int j = 0; j < l_map; j++){
             if (TileMap[i*l_map+j] == 'T')
             {
-                Enemies.push_back(new Enemy(EnemyImage, j * 32, i * 32, 52, 52, "EasyEnemy"));
-                EnemiesCount += 1; //увеличили счётчик врагов
+                Enemies.push_back(new Enemy(EasyEnemyImage, j * 32, i * 32, 52, 52, "EasyEnemy"));
+                EnemiesCount++; //увеличили счётчик врагов
                 TileMap[i*l_map+j] = '_'; //на карте, где был враг ставим пустое место
-                it = Enemies.end();
-                it--;
-                //указываем врагу случайное направление движения
-                (*it)->setDirection(rand() % (4));
             }
             if (TileMap[i*l_map+j] == 'M')
             {
-                Enemies.push_back(new Enemy(EnemyImage, j * 32, i * 32, 52, 52, "MediumEnemy"));
-                EnemiesCount += 1; //увеличили счётчик врагов
+                Enemies.push_back(new Enemy(MediumEnemyImage, j * 32, i * 32, 52, 52, "MediumEnemy"));
+                EnemiesCount++; //увеличили счётчик врагов
                 TileMap[i*l_map+j] = '_'; //на карте, где был враг ставим пустое место
-                it = Enemies.end();
-                it--;
-                //указываем врагу случайное направление движения
-                (*it)->setDirection(rand() % (4));
             }
             if (TileMap[i*l_map+j] == 'H')
             {
-                Enemies.push_back(new Enemy(EnemyImage, j * 32, i * 32, 52, 52, "HardEnemy"));
-                EnemiesCount += 1; //увеличили счётчик врагов
+                Enemies.push_back(new Enemy(HardEnemyImage, j * 32, i * 32, 52, 52, "HardEnemy"));
+                EnemiesCount++; //увеличили счётчик врагов
                 TileMap[i*l_map+j] = '_'; //на карте, где был враг ставим пустое место
-                it = Enemies.end();
-                it--;
-                //указываем врагу случайное направление движения
-                (*it)->setDirection(rand() % (4));
             }
         }
+
     map.setTileMap(TileMap);
     return EnemiesCount;
 }
@@ -229,10 +215,8 @@ void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& 
     {// если этот объект мертв, то удаляем его
         if ((*it)->getLife() == false)
         {
-            delete *it;
             it = Enemies.erase(it);
             enemiesCount--;
-            std::cout << enemiesCount << " 237" << std::endl;
         }
         else it++;//и идем курсором (итератором) к след объекту.
     }
@@ -360,7 +344,8 @@ void BattleScreen::draw(sf::RenderWindow& window, Map& map, Player& player, std:
     for (it = Enemies.begin(); it != Enemies.end(); it++)
     {
         if ((*it)->getLife()) //если враги живы
-            window.draw((*it)->getSprite()); //рисуем врагов
+            {window.draw((*it)->getSprite()); //рисуем врагов
+        }
     }
 
     //рисуем пули

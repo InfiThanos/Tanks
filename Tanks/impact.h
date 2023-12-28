@@ -10,7 +10,7 @@ public:
     float impactLimitTime; //время отображения взрыва
     float impactTimer; //счетчик времени взрыва
 
-    Impact(Image &image, float X, float Y, int W, int H, std::string Name);
+    Impact(Image image, float X, float Y, int W, int H, std::string Name);
 
     void update(float& time, Map& map);
 };

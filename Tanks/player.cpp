@@ -2,7 +2,7 @@
 
 ////////////////////////////КЛАСС ИГРОКА////////////////////////////
 
-Player::Player(Image &image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,     // Конструктор
+Player::Player(Image image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,     // Конструктор
                                                                                         Y, W, H, Name)
 {
     playerScore = 0;

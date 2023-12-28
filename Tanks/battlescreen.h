@@ -13,7 +13,7 @@ class BattleScreen
 public:
     void play();
     void readEvent(sf::RenderWindow& window, Player& player, std::list<Entity*>& Bullets, Image& BulletImage);
-    int createEnemy(std::list<Entity*>& Enemies, Image& EnemyImage, Map& map);
+    int createEnemy(std::list<Entity*>& Enemies, Map& map);
     void createImpact(std::list<Entity*>& Impacts, Image& ImpactImage, Map& map);
     void updateEnemy(float& time, Player& player, std::list<Entity*>& Enemies,
                      int& enemiesCount, std::list<Entity*>& Bullets, Image& BulletImage,

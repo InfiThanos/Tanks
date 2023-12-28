@@ -17,7 +17,7 @@ protected:
     int level;
 
 public:
-    Map(sf::Image &image);
+    Map(sf::Image image);
     void createLevel();
     int getLevel();
     void draw(sf::RenderWindow& window);

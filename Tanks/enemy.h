@@ -12,7 +12,7 @@ private:
     float shootTimer;
 
 public:
-    Enemy(Image &image, float X, float Y, int W, int H, std::string Name);
+    Enemy(Image image, float X, float Y, int W, int H, std::string Name);
     void checkCollisionWithMap(float Dx, float Dy, Map& map);
     void update(float& time, Map& map);
 };

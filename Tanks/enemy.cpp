@@ -3,37 +3,27 @@
 using namespace sf;
 
 // Конструктор
-Enemy::Enemy(Image &image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,
+Enemy::Enemy(Image image, float X, float Y, int W, int H, std::string Name) : Entity(image, X,
                                                                                       Y, W, H, Name){
-    if (Name == "EasyEnemy"){
-        // Задаем спрайту один прямоугольник для
-        // вывода одного игрока. IntRect – для приведения типов
-        sprite.setTextureRect(IntRect(0, 0, w, h));
-        direction = rand() % (4); // Направление движения врага задаём случайным образом
+    // Задаем спрайту один прямоугольник для
+    // вывода одного игрока. IntRect – для приведения типов
+    sprite.setTextureRect(IntRect(0, 0, w, h));
+    direction = rand() % (4); // Направление движения врага задаём случайным образом
+    shootLimitTime = rand() % (3000) + 1000;  // Враг может делать выстрел в интервале от 1 до 4 сек
+    shootTimer = 0;
+    shootReady = false;  // Выстрел можно будет делать по окончании случайного времени shootTime
+
+    if (Name == "EasyEnemy")
+    {
         speed = 0.12; // Даем скорость, этот объект всегда двигается
-        shootLimitTime = rand() % (3000) + 1000;  // Враг может делать выстрел в интервале от 1 до 4 сек
-        shootTimer = 0;
-        shootReady = false;  // Выстрел можно будет делать по окончании случайного времени shootTime
     }
-    if (Name == "MediumEnemy"){
-        // Задаем спрайту один прямоугольник для
-        // вывода одного игрока. IntRect – для приведения типов
-        sprite.setTextureRect(IntRect(0, 0, w, h));
-        direction = rand() % (4); // Направление движения врага задаём случайным образом
+    if (Name == "MediumEnemy")
+    {
         speed = 0.1; // Даем скорость, этот объект всегда двигается
-        shootLimitTime = rand() % (3000) + 1000;  // Враг может делать выстрел в интервале от 1 до 4 сек
-        shootTimer = 0;
-        shootReady = false;  // Выстрел можно будет делать по окончании случайного времени shootTime
     }
-    if (Name == "HardEnemy"){
-        // Задаем спрайту один прямоугольник для
-        // вывода одного игрока. IntRect – для приведения типов
-        sprite.setTextureRect(IntRect(0, 0, w, h));
-        direction = rand() % (4); // Направление движения врага задаём случайным образом
+    if (Name == "HardEnemy")
+    {
         speed = 0.08; // Даем скорость, этот объект всегда двигается
-        shootLimitTime = rand() % (3000) + 1000;  // Враг может делать выстрел в интервале от 1 до 4 сек
-        shootTimer = 0;
-        shootReady = false;  // Выстрел можно будет делать по окончании случайного времени shootTime
     }
 }
 void Enemy::checkCollisionWithMap(float Dx, float Dy, Map& map) // Ф-ция проверки столкновений с картой
