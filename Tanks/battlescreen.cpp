@@ -32,7 +32,7 @@ void BattleScreen::play()
     text.setStyle(Text::Bold); //жирный текст
 
     Image map_image; //объект изображения для карты
-    map_image.loadFromFile("images/map_test32.png"); //загружаем файл для карты
+    map_image.loadFromFile("images/map32.png"); //загружаем файл для карты
 
     Map map(map_image);
 
@@ -63,10 +63,6 @@ void BattleScreen::play()
     ImpactImage.loadFromFile("images/impact.png"); //загрузили изображения взрывов
 
     std::list<Entity*> Impacts; //спысок взрывов на поле
-
-    //map.createLevel();
-
-    map.createLevel();
 
     while (window.isOpen() && p.getLife() && map.getLevel() != 4)
     {
@@ -229,6 +225,19 @@ void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& 
                                std::list<Entity*>& Impacts, Image& ImpactImage, Map& map)
 {
     std::list<Entity*>::iterator it; //итератор чтобы проходить по элементам списка
+
+    //Проверяем список на наличие мертвых врагов и удаляем их
+    for (it = Enemies.begin(); it != Enemies.end(); )//говорим что проходимся от начала до конца
+    {// если этот объект мертв, то удаляем его
+        if ((*it)->getLife() == false)
+        {
+            it = Enemies.erase(it);
+            enemiesCount--;
+            std::cout << enemiesCount << " 236" << std::endl;
+        }
+        else it++;//и идем курсором (итератором) к след объекту.
+    }
+
     //оживляем врагов
     for (it = Enemies.begin(); it != Enemies.end(); it++)
     {
@@ -244,18 +253,6 @@ void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& 
     }
 
     updateBullet(time, player, Bullets, Impacts, ImpactImage, map);
-
-    //Проверяем список на наличие мертвых врагов и удаляем их
-    for (it = Enemies.begin(); it != Enemies.end(); )//говорим что проходимся от начала до конца
-    {// если этот объект мертв, то удаляем его
-        if ((*it)->getLife() == false)
-        {
-            it = Enemies.erase(it);
-            enemiesCount--;
-            std::cout << enemiesCount << " 247" << std::endl;
-        }
-        else it++;//и идем курсором (итератором) к след объекту.
-    }
 }
 
 void BattleScreen::updateBullet(float& time, Player& player, std::list<Entity*>& Bullets, std::list<Entity*>& Impacts, Image& ImpactImage, Map& map)
