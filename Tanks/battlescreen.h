@@ -16,7 +16,7 @@ public:
     int createEnemy(std::list<Entity*>& Enemies, Image& EnemyImage, Map& map, std::string Name);
     void createImpact(std::list<Entity*>& Impacts, Image& ImpactImage, Map& map);
     void updateEnemy(float& time, Player& player, std::list<Entity*>& Enemies,
-                     int &enemiesCount, std::list<Entity*>& Bullets, Image& BulletImage,
+                     int& enemiesCount, std::list<Entity*>& Bullets, Image& BulletImage,
                      std::list<Entity*>& Impacts, Image& ImpactImage, Map& map);
     void updateBullet(float& time, Player& player, std::list<Entity*>& Bullets, std::list<Entity*>& Impacts, Image& ImpactImage, Map& map);
     void updateImpact(std::list<Entity*>& Impacts, int& impactsCount);

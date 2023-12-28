@@ -73,7 +73,7 @@ void BattleScreen::play()
 
         std::cout << enemiesCount << std::endl;
 
-        while (window.isOpen() && p.getLife() && enemiesCount)
+        while (window.isOpen() && p.getLife() && (Enemies.empty() == false))
         {
             float time = clock.getElapsedTime().asMicroseconds();
             if (p.getLife()) gameTime = gameTimeClock.getElapsedTime().asSeconds(); //игровое время в
@@ -221,7 +221,7 @@ void BattleScreen::createImpact(std::list<Entity*>& Impacts, Image& ImpactImage,
 }
 
 void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& Enemies,
-                               int &enemiesCount, std::list<Entity*>& Bullets, Image& BulletImage,
+                               int& enemiesCount, std::list<Entity*>& Bullets, Image& BulletImage,
                                std::list<Entity*>& Impacts, Image& ImpactImage, Map& map)
 {
     std::list<Entity*>::iterator it; //итератор чтобы проходить по элементам списка
@@ -231,9 +231,10 @@ void BattleScreen::updateEnemy(float& time, Player& player, std::list<Entity*>& 
     {// если этот объект мертв, то удаляем его
         if ((*it)->getLife() == false)
         {
+            delete *it;
             it = Enemies.erase(it);
             enemiesCount--;
-            std::cout << enemiesCount << " 236" << std::endl;
+            std::cout << enemiesCount << " 237" << std::endl;
         }
         else it++;//и идем курсором (итератором) к след объекту.
     }
