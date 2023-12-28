@@ -44,7 +44,6 @@ void BattleScreen::play()
     Clock clock;  // время для синхронизации движения объектов
     Clock gameTimeClock; //переменная игрового времени, будем здесь хранить время игры
     Clock generateClock; //время для задержек генерации вещей и бонусов
-    int gameTime = 0; //объявили игровое время, инициализировали.
 
     Image EasyEnemyImage;
     EasyEnemyImage.loadFromFile("images/EasyEnemy.png"); //загружаем изображения врага
@@ -331,7 +330,13 @@ void BattleScreen::checkColision(Player& player,std::list<Entity*>& Enemies, std
         for (it1 = Bullets.begin(); it1 != Bullets.end(); it1++)
         {
             if ((*it1)->getRect().intersects((*it)->getRect()) && (*it1)->getName() == "HeroBullet") {
-                (*it)->setHealth(35);  // Уменьшаем здоровье врага
+                if ((*it)->getName() == "EasyEnemy"){
+                    (*it)->setHealth(100);
+                } else if ((*it)->getName() == "MediumEnemy") {
+                    (*it)->setHealth(50);
+                } else if ((*it)->getName() == "HardEnemy") {
+                    (*it)->setHealth(35);
+                }; // Уменьшаем здоровье врага в зависимости от его типа
                 float x, y;
                 (*it)->getCoordinates(x, y);
                 Impacts.push_back(new Impact(ImpactImage, x, y, 52, 52, "EasyImpact"));
