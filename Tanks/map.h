@@ -5,7 +5,7 @@
 
 class Map
 {
-protected:
+private:
     int heightMap; //размер карты высота
     int widthMap;  //размер карты ширина
     int maxStars;      //максимальное количество звезд на поле
